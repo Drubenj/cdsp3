@@ -1,0 +1,20 @@
+.nav{
+    width:100%;
+}
+.btn-buscar{
+    right: 5px;
+}
+.input_buscar{
+    width: 500px;;
+}
+body{
+    overflow: hidden;
+}
+#contenido{
+   
+    
+    padding-bottom:5rem;
+}
+.bg-light { background-color: var(--light) !important;}
+.bg-mix{background: linear-gradient(180deg, var(--light) 50%, var(--grey ));}
+.bg-grey{background-color:var(--grey)!important;}

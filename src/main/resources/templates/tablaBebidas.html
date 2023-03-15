@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bebidas</title>
+	<link rel="stylesheet" type="text/css" href="css/ventas.css">
+	
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
+	<link rel="stylesheet" type="text/css" href="css/encabezadoestilos.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
+	<link rel="stylesheet" type="text/css" href="css/encabezadoestilos.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+</head>
+<body style="background: lightgoldenrodyellow">
+<iframe class="encabezado" src="encabezado.html"style="width: 100%; height:150px; display:block;" frameborder=0></iframe>
+	<iframe class="barra" src="BARRACR.html"style="width: 100%; height:51px; display: block;" frameborder=0 ></iframe>
+<div	class="w3-container pedidos" style="font-family: 'Rubik';">
+
+	<div class="w3-quarter">
+		
+		<div class="w3-panel w3-amber w3-margin  w3-round"style="width: 50%; height:30px">
+		<div class=" w3-center fa fa-calendar"style="margin-top:7px;">Jueves 7, Abril</div>
+		</div>
+
+		<div class="w3-row menupedidos ">
+
+		<div class="w3-black w3-bar-block" >
+  		<a href="Registrarpedido.html" class="w3-bar-item w3-button  w3-wide w3-hover-teal w3-hover-text-orange" ><b>Nuevo pedido</b></a>
+  		<a href="Pedidos.html" class="w3-bar-item w3-button w3-hover-text-orange w3-wide w3-hover-teal"><b>Pedidos</b></a>
+  		<a href="ventas.html" class="w3-bar-item w3-button w3-hover-text-orange w3-wide w3-hover-teal
+ 	 	"><b>Ventas</b></a>
+ 	 	
+		</div>
+		</div>
+	</div>
+
+	<div class="w3-half">
+		<div class="w3-center">
+			<div class="w3-bar w3-margin-top">
+  			<button class="w3-button w3-red "><i class="fa fa-remove"></i>Limpiar</button>
+  			<button class="w3-button w3-orange"><i class="fa fa-send"></i>Enviar</button>
+			</div>
+		</div>
+
+		<div name="tablaBebidas"class="w3-row w3-margin-top w3-animate-zoom">	
+		
+		<table class="w3-table-all w3-ul w3-margin-top" id="myTable">
+		<tr class="w3-amber w3-bottombar w3-border-amber">
+		<th>ID Menú</th>
+  		<th>Menú
+  			<input class="w3-input w3-animate-input form-control" type="text"placeholder=" Buscar" style="width:30%">
+  			</th>
+  		<th class="w3-center">Precio/u</th>
+  		<th class="w3-center">Agregar</th>
+		</tr>
+
+		<tr>
+		<td>201</td>
+  		<td>CocaCola 1.25 l</td>
+  		<td class="w3-center">2.000</td>
+  		<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+			</tr>
+			<tr>
+  		<td>202</td>
+  		<td>Pepsi 1.25 l</td>
+  		<td class="w3-center">2.000</td>
+  		<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+			</tr>
+
+			<tr>
+		<td>203</td>
+  		<td>Pony Malta</td>
+  		<td class="w3-center">1.800</td>
+  		<td class="w3-center"><button class="w3-button w3-circle w3-amber ">+</button></td>
+			</tr>
+			<tr>
+		<td>204</td>
+  		<td>Colombiana 1.25 l</td>
+  		<td class="w3-center">1.800</td>
+  		<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+			</tr>
+			</table>
+		</div>
+	</div>
+  
+	<div class="w3-quarter w3-container">
+
+ 		<div class="w3-row  categorias w3-center">			
+  		<h5 class=" w3-wide ">categoria</h5>
+  			<div class="w3-bar-block w3 w3-center">
+  			<a href="tablaAlmuerzos.html" class="w3-bar-item w3-button w3-blue w3-round-xlarge w3-margin-top" >Almuerzos</a>
+  			<a href="tablaBebidas.html" class="w3-bar-item w3-button w3-blue w3-round-xlarge w3-margin-top" >Bebidas</a>
+  			<a href="#" class="w3-bar-item w3-button w3-blue w3-round-xlarge w3-margin-top">Hamburguesas</a>
+		  	<a href="#" class="w3-bar-item w3-button w3-blue w3-round-xlarge w3-margin-top">Perros</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div>
+	<iframe src="RegistroPedido.html" frameborder="0" allowfullscreen style="width: 100%; height:380px;line-height: 0px; display:block" frameborder=0></iframe>
+</div>
+
+<iframe class="footerp" src="foteroregano.html"style="width: 100%; height:150px;line-height: 0px; display:block" frameborder=0></iframe>
+
+</body>
+</html>

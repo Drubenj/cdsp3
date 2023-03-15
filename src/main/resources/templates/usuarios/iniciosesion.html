@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Inicio de sesión</title>
+	<link rel="icon" type="imagen/png" href="img/pixlr-bg-result.png" />
+	<link rel="icon" type="imagen/png" href="img/pixlr-bg-result.png" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/encabezadoestilos.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- Fonts Awesome -->
+	<script src="https://kit.fontawesome.com/816766908f.js" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	
+</head>
+<body style="background-color: lightgoldenrodyellow;">
+	<div th:include="home/encabezadoInicio.html::headerHome"></div>
+
+	<div class="container w-50 bg-primary mt-5 mb-5 rounded  shadow">
+		<div class="row align-items-stretch justify-content-md-center">
+			<div class="col bg-white p-5 rounded-end">
+				<div class="text-end text-right">
+					<img class="" th:src="@{/img/logocdsp.png}" width="90" alt="">
+				</div>
+				<h2 class="fw-bold text-center py-3">Inicio sesión</h2>
+				
+					<div th:if=${param.error}>
+						<div class="alert alert-danger text-center"> 
+						Usuario o contraseña invaidos!
+						</div>
+					</div>
+					<div th:if=${param.logout}>
+						<div class="alert alert-info"> 
+						Has cerrado sesión
+						</div>
+					</div>
+				<form th:action="@{/cdsp/acceder}" th:object="${usuario}" method="POST">
+					<div class="mb-4">
+						<label for="correo" class="form-label">&#128100; Usuario</label>
+						<input type="email" class="form-control" name="correo" placeholder="Digite su correo electronico" />
+					</div>
+					<div class="mb-4">
+						<label  for="contrasenia" class="form-label"> &#128273; Contraseña</label>
+						<input type="password" class="form-control" name="contrasenia" />
+					</div>
+					<div class="mb-4 form-check">
+						<input type="checkbox" class="form-check-input" id="terminos" name="terminos">
+						<label class="form-check-label"> Aceptas los terminos de tratamiento de datos</label>
+					</div>
+					<div class="d-grid text-center">
+						<input type="submit" class="btn btn-primary" id="login-submit" value="Iniciar Sesión" />
+					</div>
+					<div class="my-3">
+						<span>¡No tienes cuenta?<a th:href="@{/cdsp/registro}"> Registrate</a></span><br>
+						<span><a href="@{}">Recuperar contraseña</a></span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+<div th:include="home/foteroregano.html::footer"></div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+		crossorigin="anonymous"></script>
+	<script src="static/js/validarInicioSession.js"></script>
+</body>
+</html>

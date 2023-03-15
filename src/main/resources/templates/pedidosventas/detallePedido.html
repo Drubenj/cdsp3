@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detalle Pedido</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="icon" type="imagen/png" th:href="@{/img/pixlr-bg-result.png}" />
+<link href='https://fonts.googleapis.com/css?family=Rubik'
+	rel='stylesheet'>
+<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/datatables/datatables.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/datatables/DataTables-1.12.1/css/dataTables.bootstrap5.min.css}">
+<!--css-->
+<link rel="stylesheet" type="text/css" th:href="@{/css/ventas.css}">
+<!-- css IziToast mensajes -->
+<link rel="stylesheet"
+	th:href="@{/iziToast-master/dist/css/iziToast.min.css}">
+<!-- css Swetalert -->
+<link rel="stylesheet" th:href="@{/sweetalert/sweetalert2.css}">
+
+</head>
+<body style="background: lightgoldenrodyellow; font-family: Rubik">
+
+	<div th:include="administrador/encabezado.html::header"></div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="modalUsuarios" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog  modal-dialog-scrollable modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Usuarios</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="my-2 ">
+						<table class="table table-striped" id="tablaUsuarios">
+							<thead class="table-dark">
+								<tr>
+									<th>id</th>
+									<th>Nombres</th>
+									<th>Apellidos</th>
+									<th>Documento</th>
+									<th class="w3-center">Selección</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<tr th:each="usuario : ${listaUsuarios}">
+									<td th:text="${usuario.id}"></td>
+									<td th:text="${usuario.nombres}"></td>
+									<td th:text="${usuario.apellidos}"></td>
+									<td th:text="${usuario.idUsuario}"></td>
+									<td class="text-center">
+										<a class="w3-button btn btn-info btn-sm rounded"
+											th:href="@{/cdsp/pedidos/detalleuser/{id} (id = ${usuario.id} )}"><i class="fa-solid fa-hand-pointer" ></i></a>
+									</td>
+
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"
+						data-bs-dismiss="modal">Atras</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="w3-quarter">
+
+
+		<div class="w3-row menupedidos">
+			<div class="card m-2">
+				<a th:href="@{/cdsp/pedidos/menu}"
+					class="w3-button 
+							w3-hover-text-orange w3-hover-black"
+					style="text-decoration: none">
+					<div class="card-content">
+						<div class="card-body">
+							<div class="media d-flex">
+								<div class="align-self-center">
+									<span style="font-size: 50px; color: blue;"><i
+										class="fa-solid text-info fa-cart-plus"></i></span>
+								</div>
+								<div class="position-absolute top-50 start-50 translate-middle">
+									<h4>Agregar</h4>
+									<span>Agrega menú</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	
+
+	<form th:action="@{/cdsp/pedidos/guardar}" id="pedidoForm"
+		class="formulario" th:object="${pedido}" method="POST">
+		<input type="hidden" th:field="*{id}" th:value="${pedido.id}" />
+			<div class="conteiner">
+				<div class="row">
+					<div class="w3-threequarter m-2">
+						<div class="my-2 border-bottom">
+							<h1 class="font-weight-bold ">Detalle del pedido</h1>
+							<p class="lead text-muted ">Menús agregados hasta el momento</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="w3-threequarter py-2">
+					<div th:if=${param.error}>
+					<div class="container">
+					<div class="row">
+						<div class="alert alert-info mt-2"> 
+						<h5 class="text-center">¡Necesitas diligenciar correctamente el pedido!</h5>
+						</div>
+						</div>
+					</div>
+	</div>
+				<div class="m-2">
+					<div class="w3-card-4">
+						<header class="w3-container w3-dark-grey">
+							<h5 class="w3-right my-2">Detalle</h5>
+						</header>
+						<table class="table mt-1">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Menú</th>
+									<th class="w3-center">Cantidad</th>
+									<th>Precio</th>
+									<th>total</th>
+									<th class="w3-center">Acciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="detallePedido : ${listaDetalles}">
+									<th th:text="${detallePedido.id}"></th>
+									<td th:text="${detallePedido.menu.nombre}"></td>
+									<td class="w3-center" th:text="${detallePedido.cantidad}"></td>
+									<td class="" th:text="${detallePedido.menu.precio}"></td>
+									<td>$<span th:text="${detallePedido.subtotal}"></span></td>
+									<td class="w3-center"><a
+										th:onclick="eliminarDetalle([[${detallePedido.menu.id}]])"
+										class="btn btn-danger btn-sm"> <i class="fa fa-trash-o"></i>
+									</a></td>
+								</tr>
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="3" class="w3-center">
+										<button class="btn btn-danger btn-sm" id="vaciar-carrito">
+											vaciar</button>
+									</td>
+
+									<td colspan="2" class="fw-bold w3-right">
+										<h4 class="w3-center">Subtotal</h4>
+									</td>
+									<td class="font-weight-bold w3-center "><span
+										class="w3-tag w3-green"> $ <span
+											class="w3-center w3-xlarge" th:text="${venta.total}"></span></span></td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+
+
+					<div class="row">
+
+						<div class="card-group">
+							
+							<div th:if="${user != null}">
+							<div class="card border-warning m-2" >
+								<div class="card-header">Cliente</div>
+								<div class="card-body row">
+									<div class="col-md-6">
+										<input type="number" th:placeholder="${user.nombres}+' '+${user.apellidos}"
+											 disabled required/>
+									</div>
+									<div class="col-md-6">
+										<!-- Button trigger modal -->
+										<button type="button" class="btn btn-info btn-sm"
+											data-bs-toggle="modal" data-bs-target="#modalUsuarios">
+											<span><i class="fa-solid fa-user me-2"></i></span>Selecciona
+											el cliente
+										</button>
+									</div>
+								</div>
+							</div>
+							</div>
+							
+							<div th:unless="${user != null}">
+							<div class="card border-warning m-2" >
+								<div class="card-header">Cliente</div>
+								<div class="card-body row">
+									<div class="col-md-6">
+										<input type="number" placeholder="Selecciona un cliente"
+											 disabled required>
+									</div>
+									<div class="col-md-6">
+										<!-- Button trigger modal -->
+										<button type="button" class="btn btn-info btn-sm"
+											data-bs-toggle="modal" data-bs-target="#modalUsuarios">
+											<span><i class="fa-solid fa-user me-2"></i></span>Selecciona
+											el cliente
+										</button>
+									</div>
+								</div>
+							</div>
+							</div>
+
+							<div class="card border-warning m-2">
+								<div class="card-header">Tipo Pedido</div>
+								<div class="card-body">
+									<div class="">
+										 <select th:field="*{tipo}" name="mesa" id="mesa"
+											class="input_formulario w3-light-grey " required
+											style="background: none; width: 80%; padding-bottom: 15px; padding-left: 10px; border: none; outline: 0px; color: darkgray;">
+											<th:block th:each="tipo : ${listaTipo}">
+												<option th:text="${tipo.nombre}" th:value="${tipo.id}"></option>
+											</th:block>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="w3-center w3-margin">
+
+					<button type="submit" class="btn btn-warning">Generar pedido</button>
+					<p class="formulario_mensaje-exito w3-margin-top"
+						id="formulario_mensaje-exito">Formulario registrado con exito</p>
+				</div>
+			</div>
+	</form>
+
+	<!-- jQuery js-->
+	<script th:src="@{/jquery/jQuery3.6.1.js}"></script>
+
+	<!-- Pedidos js -->
+	<script type="text/javascript" th:src="@{/js/Pedidos.js}"></script>
+
+	<!-- Datatables js -->
+	<script type="text/javascript"
+		th:src="@{/datatables/datatables.min.js}"></script>
+
+	<!--Alertas sweet alert-->
+	<script type="text/javascript" th:src="@{/sweetalert/sweetalert2.js}"></script>
+	<script th:src="@{/js/alertas.js}"></script>
+
+
+	<!--IziToast js-->
+	<script th:src="@{/iziToast-master/dist/js/iziToast.min.js}"></script>
+
+	<!-- Fonts Awesome -->
+	<script src="https://kit.fontawesome.com/816766908f.js"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+</body>
+</html>

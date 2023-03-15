@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Detalle Pedido</title>
+	<link rel="icon"type="imagen/png" th:href="@{/img/pixlr-bg-result.png}"/>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
+	<link rel="stylesheet" type="text/css" th:href="@{css/encabezadoestilos.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+	  <!--BOOTSTRAP-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<!--css-->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/ventas.css}">
+	<!--FONT AWESOME-->
+	<script src="https://kit.fontawesome.com/816766908f.js" crossorigin="anonymous"></script>
+	<!--Archivo jscript-->
+</head>
+<body style="background: lightgoldenrodyellow; font-family: Rubik">
+
+	<div th:include="cliente/encabezado.html::headercliente"></div>
+
+	<div class="w3-quarter">
+
+		<div class="w3-panel w3-amber w3-margin  w3-round"
+			style="width: 50%; height: 30px">
+			<div class="w3-center fa fa-calendar"
+				style="margin-top: 7px; font-size: 12px">Jueves 7, Abril</div>
+		</div>
+
+		<div class="w3-row menupedidos">
+
+			<div class="w3-black w3-bar-block ">
+				<a th:href="@{/cdsp/cliente/menu}"
+					class="w3-bar-item w3-button w3-hover-text-orange w3-wide w3-hover-blue"><b>Agregar
+						menú</b></a>
+			</div>
+		</div>
+	</div>
+
+	<div class="conteiner w3-margin">
+
+		<div class="w3-threequarter py-2">
+
+			<div class="w3-margin">
+				<div class="w3-card-4 mt-3">
+
+					<header class="w3-container w3-dark-grey">
+						<h5 class="w3-right my-2">Detalle</h5>
+					</header>
+					<table class="table mt-2">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Menú</th>
+								<th class="w3-center">Cantidad</th>
+								<th>Precio</th>
+								<th>total</th>
+								<th class="w3-center">Acciones</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="detallePedido : ${listaDetalles}">
+								<th th:text="${detallePedido.id}"></th>
+								<td th:text="${detallePedido.menu.nombre}"></td>
+								<td class="w3-center" th:text="${detallePedido.cantidad}"></td>
+								<td class="" th:text="${detallePedido.menu.precio}"></td>
+								<td>$<span th:text="${detallePedido.subtotal}"></span></td>
+								<td class="w3-center"><a
+									th:href="@{/cdsp/cliente/eliminar/detalle/{id} (id = ${detallePedido.menu.id})}"
+									class="btn btn-danger btn-sm"> <i class="fa fa-trash-o"></i>
+								</a></td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<td colspan="3" class="w3-center">
+								<button class="btn btn-danger btn-sm" id="vaciar-carrito">
+									vaciar</button>
+							</td>
+
+							<td colspan="2" class="fw-bold w3-right">
+								<h4 w3-center>Subtotal</h4>
+							</td>
+							<td class="font-weight-bold w3-center "><span
+								class="w3-tag w3-green"> $ <span
+									class="w3-center w3-xlarge" th:text="${venta.total}"></span></span></td>
+
+						</tfoot>
+					</table>
+				</div>
+
+				<div class="card rounded-0 mt-5">
+					<div class="card-header  w3-black">
+						<h4 class="fond-weight-bold mb-0 text-center">Datos del
+							Domicilio</h4>
+					</div>
+					<form th:action="@{/cdsp/cliente/pedido/guardar}"
+						class="formulario form-inline" th:object="${domicilio}" method="POST">
+						<div class="row m-2">
+							<fieldset disabled>
+								<div class="col m-2">
+									<label for="usuario" class="col-form-label-sm"><h6
+											class="text-success">Nombre</h6></label> <input type="text"
+										class="form-control" th:value="${usuario.nombres}">
+								</div>
+							</fieldset>
+							
+						<div class="col">
+								<label for="usuario" class="col-form-label-sm"><h6
+										class="text-success">Ciudad</h6></label> 
+										<select  type="text" name="ciudad" id="ciudad" th:field="*{ciudad}">
+									<option value=""></option>
+									<option value="bogota">Bogota</option>
+								</select>
+						</div>
+						<div class="col">
+								<label for="barrio" class="col-form-label-sm"><h6
+										class="text-success">Barrio</h6></label> <input type="text"
+									class="form-control" name="barrio" id="barrio"
+									th:field="*{barrio}">
+						</div>
+
+						<div class="col">
+								<label for="usuario" class="col-form-label-sm"><h6
+										class="text-success">Direccion</h6></label> <input type="text"
+									class="form-control" name="direccion" id="direccion"
+									th:field="*{direccion}">
+							</div>
+
+							<div class="col">
+								<label for="inmueble" class="col-form-label-sm"><h6
+										class="text-success">Tipo de inmueble</h6></label> <select type="text"
+									name="inmueble" id="inmueble" th:field="*{inmueble}" required>
+									<option value=""></option>
+									<option value="bogota">Casa</option>
+									<option value="bogota">Apartamento</option>
+								</select>
+							</div>
+							<div class="col">
+								<label for="usuario" class="col-form-label-sm"><h6
+										class="text-success">Interior</h6></label> <input type="text"
+									class="form-control" name="interior" id="interior"
+									th:field="*{interior}" required>
+							</div>
+						</div>
+						<div class="text-center">
+							<button type="submit" class="btn btn-outline-info w3-center">Pedir</button>
+							<p class="formulario_mensaje-exito w3-margin-top"
+								id="formulario_mensaje-exito">Formulario registrado con exito</p>
+						</div>							
+					</form>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+	</div>
+
+</body>
+</html>

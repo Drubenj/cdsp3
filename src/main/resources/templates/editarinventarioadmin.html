@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+<title>Actualizar Inventario</title>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+	<a class="navbar-brand" th:href="@{/inventarioadmin}">Actualizar Inventario</a>
+	<div class="collapse navbar-collapse" id="collapseNavbar">
+		<ul class="navbar-nav">
+		</ul>
+	</div>
+</nav>
+<br>
+<div class="container">
+	<div class="row">
+		<div
+			class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+			<h1 class="text-center">Actualizar Inventario</h1>
+			<div class="card-body">
+				<form th:action="@{/cdsp/inventarioadmin/{idinventario}(idinventario=${inventario.idinventario})}" th:object="${inventario}" method="POST">
+					<div class="form-group">
+						<label>Fecha:</label> 
+						<input type="date" name="fecha" th:field="*{fecha}" id="fecha" class="form-control" readonly></input>
+					</div>
+					<br> <label for="lang">Insumo</label> <select
+						 id="lang" name="insumo" th:field="*{insumo}">
+						<option value=""></option>
+						<option value="1">Oregano</option>
+						<option value="2">Arroz</option>
+						<option value="3">Carne</option>
+						<option value="4">Papa</option>
+						<option value="5">Arbeja</option>
+						<option value="6">Platano</option>
+						<option value="7">Frijol</option>
+						<option value="8">Garvanzo</option>
+						<option value="9">Lechuga</option>
+						<option value="10">Pan</option>
+						<option value="11">Salchicha</option>
+						<option value="12">Champiñones</option>
+						<option value="13">Tomate</option>
+						<option value="14">Piña</option>
+						<option value="15">Queso</option>
+						<option value="16">Bocadillo</option>
+						<option value="17">Cebolla</option>
+						<option value="18">Ajo</option>
+						<option value="19">Tocineta</option>
+						<option value="20">Mora</option>
+						<option value="21">Fresa</option>
+						<option value="22">Brocoli</option>
+						<option value="23">Atun</option>
+						<option value="24">Harina</option>
+						<option value="25">Huevo</option>
+						<option value="26">Leche</option>
+						<option value="27">Sal</option>
+						<option value="28">Azucar</option>
+						<option value="29">Mango</option>
+					</select>
+					<div>
+					<label for="lang">Movimiento</label> <select
+						 id="lang" name="movimiento" th:field="*{movimiento}">
+						<option value="4">Entrada</option>
+						<option value="3">Salida</option>
+						</select>
+					</div>
+					<br>
+					<label>Cantidad Total:</label>
+						<input type="number" name="cantidadtotal" th:field="*{cantidadtotal}"
+							rows="5" cols="71" placeholder="Ingrese el precio"></input>
+					</div>
+					
+					<br>
+					<center>
+					<div class="box-footer">
+						<br>
+						<button class="btn btn-success" onclick="confirm('Seguro que quieres actualizar el inventario?')">Actualizar</button>
+						<button class="btn btn-info" onclick="confirm('Seguro que quieres borrar los datos?')">Limpiar</button>
+					</div>
+					</center>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+</head>
+<body>
+
+
+</body>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+
+		var now = new Date();
+
+		var day = ("0" + now.getDate()).slice(-2);
+		var month = ("0" + (now.getMonth() + 1)).slice(-2);
+
+		var today = now.getFullYear() + "-" + (month) + "-" + (day);
+		$("#fecha").val(today);
+	});
+</script>
+</html>

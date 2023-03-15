@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Editar Usuario</title>
+	<link rel="icon" type="imagen/png" href="img/LOGO1.jpg" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+	<link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+	<!--Estilos encabezado-->
+	<link rel="stylesheet" type="text/css" href="css/encabezadoestilos.css">
+		<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Fonts Awesome -->
+    <script src="https://kit.fontawesome.com/816766908f.js" crossorigin="anonymous"></script>
+</head>
+<body style="background: lightgoldenrodyellow; font-family:Rubik">
+		<div th:include="administrador/encabezado.html::header"></div>
+	<div class="container">
+				<br>
+				<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center">
+				<div class="card bg-dark text-white">
+					<h3 class="text-center">editar Usuario</h3>
+				</div>
+				<br>
+
+				<form  th:object="${usuario}" method="POST">
+					<imput type ="hidden" name="id" th:value="${usuario.id}"/>
+					<div class="card w3-light-grey" style="border: none; margin: 5px">
+						<label style="padding: 10px; position: relative;">Nombres</label>
+						<input name="nombres" type="text" th:field="*{nombres}"
+							style="background: none; width: 70%;padding-left:10px; border: none; outline: 0px"
+							placeholder="Digite el nombre" required>
+					</div>
+	
+					<div class="card w3-light-grey" style="border: none; margin: 5px">
+						<label style="padding: 10px; position: relative;">Apellidos</label>
+						<input name="apellidos" type="text" th:field="*{apellidos}"
+							style="background: none; width: 70%;padding-left:10px; border: none; outline: 0px"
+							placeholder="Digite el apellido" required>
+					</div>
+	
+					<div class="card w3-light-grey" style="border: none; margin: 5px">
+						<label style="padding: 10px; position: relative;">Documento</label>
+						<input name="idUsuari" type="number" th:field="*{idUsuario}" min-length="8" max-legngth="10"
+							style="background: none; width: 95%;padding-left:10px; border: none; outline: 0px"
+							placeholder="Digite su número de id" required>
+					</div>
+	
+					<div class="card w3-light-grey" style="border: none; margin: 5px">
+						<label style="padding: 10px; position: relative;">Telefono</label>
+						<input name="telefono" type="number" th:field="*{telefono}" min-length="8" max-legngth="10"
+							style="background: none; width: 95%;padding-left:10px; border: none; outline: 0px"
+							placeholder="Digite su número de telefono" required>
+					</div>
+	
+					<div class="card w3-light-grey" style="border: none; margin: 5px">
+						<label style="padding: 10px; position: relative;">Correo</label>
+						<input name="correo" type="e-mail" th:field="*{correo}"
+							style="background: none; width: 70%;padding-left:10px; border: none; outline: 0px"
+							placeholder="Digite e-mail" required>
+					</div>
+	
+					<div class="card w3-light-grey" style="border: none; margin: 5px">
+						<label style="padding: 10px; position: relative;">Dirección</label>
+						<input name="direccion" type="text" th:field="*{direccion}"
+							style="background: none; width: 70%;padding-left:10px; border: none; outline: 0px"
+							placeholder="Digite la dirección" required>
+					</div>
+					
+					<div class="card w3-light-grey" style="border: none; margin: 5px">
+						<label style="padding: 10px; position: relative;">Rol</label>
+						<select th:field="*{rol}" name="rol" id="rol" class="input_formulario w3-light-grey " required
+							style="background: none; width: 95%; padding-bottom: 15px;padding-left:10px; border: none; outline: 0px; color:darkgray;">
+							<th:block th:each="rol : ${listaRoles}">
+								<option th:text="${rol.nombre}" th:value="${rol.id}"></option>
+							</th:block>
+						</select>
+					</div>
+					
+					<div class="card w3-light-grey" style="border: none; margin: 5px">
+						<label style="padding: 10px; position: relative;">Contraseña</label>
+						<input name="contrasenia" type="password" th:field="*{contrasenia}"
+							style="background: none; width: 70%;padding-left:10px; border: none; outline: 0px"
+							placeholder="Digite la contraseña" required>
+					</div>
+	
+	
+					<div class="w3-bar w3-margin w3-center">
+						<button class="w3-button bg-dark text-white w3-hover-light-green rounded">Guardar</button>
+					</div>
+				</form>
+			</div>
+	</div>
+
+</body>
+
+</html>

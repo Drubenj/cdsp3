@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+<title>Editar Insumo</title>
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+	<a class="navbar-brand" th:href="@{/insumo}">Editar Insumo</a>
+	<div class="collapse navbar-collapse" id="collapseNavbar">
+		<ul class="navbar-nav">
+		</ul>
+	</div>
+</nav>
+<br>
+<div class="container">
+	<div class="row">
+		<div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+			<h1 class="text-center">Editar Insumo</h1>
+			<div class="card-body">
+				<form th:action="@{/cdsp/insumo/actualizar/{idinsumo}(idinsumo=${insumo.idinsumo})}" th:object="${insumo}" method="POST">
+					<div class="form-group">
+						<label>Nombre:</label> 
+						<input type="text" name="nombre" th:field="*{nombre}" class="form-control"
+							placeholder="Ingrese el nombre del insumo"></input>
+					</div>
+					<label>Precio:</label>
+					<div>
+						<input type="number" name="precio" th:field="*{precio}"
+							rows="5" cols="71" placeholder="Ingrese el precio"></input>
+					</div>
+					
+					<br> <label for="lang">Estado</label> 
+					<select id="lang" name="estado" th:field="*{estado}">
+						<option value=""></option>
+						<option value="7">Inactivo</option>
+						<option value="6">Activo</option>
+					</select> 
+					<br>
+					<br> <label for="lang">Categoria</label> <select
+						 id="lang" name="cateins" th:field="*{cateins}">
+						<option value=""></option>
+						<option value="1">Especias</option>
+						<option value="2">Bebidas</option>
+						<option value="3">Abarrotes</option>
+						<option value="4">Carnicos</option>
+						<option value="5">Legumbres</option>
+						<option value="6">Verduras</option>
+						<option value="7">Fruta</option>
+						<option value="8">Lacteos</option>
+					</select>
+					<div class="box-footer">
+						<br>
+						<button type="submit" class="btn btn-success">Actualizar</button>
+					</div>
+					</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

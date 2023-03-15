@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pedidos Menu</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="icon" type="imagen/png" th:href="@{/img/pixlr-bg-result.png}" />
+<link href='https://fonts.googleapis.com/css?family=Rubik'
+	rel='stylesheet'>
+<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" th:href="@{/datatables/datatables.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/datatables/DataTables-1.12.1/css/dataTables.bootstrap5.min.css}">
+<!--css-->
+<link rel="stylesheet" type="text/css" th:href="@{/css/ventas.css}">
+<!-- css IziToast mensajes -->
+<link rel="stylesheet"
+	th:href="@{/iziToast-master/dist/css/iziToast.min.css}">
+<!-- css Swetalert -->
+<link rel="stylesheet" th:href="@{/sweetalert/sweetalert2.css}">
+
+</head>
+<body style="background: lightgoldenrodyellow; font-family: Rubik">
+
+	<div th:include="mesero/encabezado.html::header"></div>
+
+	<div class="container-fluid pedidoM">
+
+		<div class="w3-quarter">
+
+			<div class="w3-row menupedidos ">
+
+
+				<div class="card m-2">
+					<a th:href="@{/cdsp/pedidosm/menu}"
+						class="w3-button 
+							w3-hover-text-orange w3-hover-black"
+						style="text-decoration: none">
+						<div class="card-content">
+							<div class="card-body">
+								<div class="media d-flex">
+									<div class="align-self-center">
+										<span style="font-size: 50px; color: blue;"><i class="fa-solid text-info fa-backward"></i></span>
+									</div>
+									<div class="position-absolute top-50 start-50 translate-middle">
+										<h4>Volver</h4>
+										<span>vuelve a menús</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="card m-2">
+					<a th:href="@{/cdsp/pedidosm/verDetalle}"
+						class="w3-button w3-hover-text-orange
+							w3-hover-black"
+						style="text-decoration: none">
+						<div class="card-content">
+							<div class="card-body">
+								<div class="media d-flex">
+									<div class="align-self-center">
+										<span style="font-size: 50px; color: blue;"><i
+											class="fa-solid text-primary fa-list-check"></i></span>
+									</div>
+									<div class="position-absolute top-50 start-50 translate-middle">
+										<h4>Detalle</h4>
+										<span>Consulta agregados</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+				<div class="card m-2">
+					<a th:href="@{/cdsp/pedidosm}"
+						class="w3-button w3-hover-text-orange 
+						 w3-hover-black"
+						style="text-decoration: none">
+						<div class="card-content">
+							<div class="card-body">
+								<div class="media d-flex">
+									<div class="align-self-center">
+										<span style="font-size: 50px"><i
+											class="fa-solid text-warning fa-pen-to-square"></i></span>
+									</div>
+									<div class="position-absolute top-50 start-50 translate-middle">
+										<h4>Pedidos</h4>
+										<span>Gestiona tus Pedidos</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				</div>
+
+			</div>
+		</div>
+		<form th:action="@{/cdsp/pedidosm/detalle}" method="POST">
+			<input type="hidden" th:value="${menu.id}" name="id" />
+			<div class="conteiner">
+				<div class="row">
+					<div class="w3-threequarter py-2">
+						<div class="my-2 border-bottom">
+							<h1 class="font-weight-bold ">Menú</h1>
+							<p class="lead text-muted ">Descripción del menú</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="w3-threequarter w3-animate-zoom mt-2">
+
+				<div class=" registropedido w3-margin">
+					<div class="w3-card-4 mt-1">
+
+						<header class="w3-container w3-amber">
+							<h5 class="w3-right my-2">Descripción</h5>
+						</header>
+						<table class="table mt-2">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Menú</th>
+									<th class="w3-center">Cantidad</th>
+									<th>Precio</th>
+								</tr>
+							</thead>
+							<tbody id="items">
+								<tr>
+									<th th:text="${menu.id}"></th>
+									<td th:text="${menu.nombre}">Café</td>
+									<td class="w3-center">
+										<div class="formulario_grupo" id="grupo_cantidad">
+											<div class="formulario_grupoi" id="grupo_cantidad">
+												<input class="input_formulario" type="number"
+													style="width: 30%; font-size: 14px"
+													title="Ingrese la cantidad" minlength="1" maxlength="3"
+													min="1" max="100" required name="cantidad" id="cantidad">
+												<i
+													class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+											</div>
+											<p class="formulario_input-error">La cantidad debe
+												sersuoperior a 0</p>
+										</div>
+									</td>
+									<td><span th:text="${menu.precio}">500</span></td>
+								</tr>
+							</tbody>
+
+							<tfoot>
+								<tr>
+									<td colspan="2" class="fw-bold">Categoria</td>
+									<td colspan="2">
+										<div class="w3-tag w3-round w3-green" style="padding: 3px">
+											<div
+												class="w3-tag w3-round w3-green w3-border w3-border-white"
+												th:text="${menu.categoria.nombre}"></div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<th scope="row">Descripcion</th>
+									<td colspan="5" th:text="${menu.descripcion}">10</td>
+								</tr>
+							</tfoot>
+						</table>
+
+					</div>
+
+					<div class="w3-margin w3-center">
+						<!--Botones de limpiar y enviar (Input reset, submi)-->
+						<button type="submit" class="btn btn-outline-info ">Agregar</button>
+						<p class="formulario_mensaje-exito w3-margin-top"
+							id="formulario_mensaje-exito">Formulario registrado con exito</p>
+					</div>
+				</div>
+
+			</div>
+		</form>
+	</div>
+
+	<!-- jQuery js-->
+	<script th:src="@{/jquery/jQuery3.6.1.js}"></script>
+
+	<!-- Pedidos js -->
+	<script type="text/javascript" th:src="@{/js/Pedidos.js}"></script>
+
+	<!-- Datatables js -->
+	<script type="text/javascript"
+		th:src="@{/datatables/datatables.min.js}"></script>
+
+	<!--Alertas sweet alert-->
+	<script type="text/javascript" th:src="@{/sweetalert/sweetalert2.js}"></script>
+	<script th:src="@{/js/alertas.js}"></script>
+
+
+	<!--IziToast js-->
+	<script th:src="@{/iziToast-master/dist/js/iziToast.min.js}"></script>
+
+	<!-- Fonts Awesome -->
+	<script src="https://kit.fontawesome.com/816766908f.js"
+		crossorigin="anonymous"></script>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+		crossorigin="anonymous"></script>
+</body>
+</html>

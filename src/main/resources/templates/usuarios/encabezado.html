@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Encabezado</title>
+	<link rel="icon" type="imagen/png" href="img/pixlr-bg-result.png" />
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
+	<link rel="stylesheet" type="text/css" href="css/encabezadoestilos.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+	<link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+<div th:fragment="headercliente">
+
+	<div class="w3-container encabezado w3-center " style="background-color:#8EBC5A;height: 100%;">
+
+		<a href="IndexOregano.html" target="_top">
+			<img class="principal w3-image w3-center" th:src="@{/img/OREGANOLOGO.png}"
+				style="width:100%;max-width:400px;margin-right: 14%;height: 150px;">
+
+			<img class="principal w3-left w3-image" th:src="@{/img/pixlr-bg-result.png}"
+				style="width:100%;height: 140px;max-width:150px;margin-top: 2px;">
+		</a>
+	</div>
+	<div class=" navbar navbar-expand-lg" style="width:100%; background-color: black; font-family: 'Rubik';">
+
+		<div class="container-fluid w3-row">
+			<div>
+				<a href="@{/cdsp/inicio}"
+					class="  w3-button w3-2017-greenery w3-hover-light-green w3-border-white w3-round-large"
+					style="text-decoration:none; background-color:#8EBC5A; color: white;margin-right: 0px ;margin-left: 0px;">Inicio</a>
+			</div>
+			<div>
+				<a href="#"
+					class="w3-button w3-hover-lime w3-border-white w3-round-large w3-round-large"
+					style="text-decoration:none; background-color: black; color: white; margin-right: 0px ;margin-left: 0px;">
+					&#127857; Mis pedidos</a>
+			</div>
+			<div>
+				<a th:href="@{/cdsp/cliente/menu}" 
+					class="w3-button w3-hover-lime w3-border-white w3-round-large w3-round-large"
+					style="text-decoration:none; background-color: black; color: white; margin-right: 0px ;margin-left: 0px;">&#128214; Menu;
+					Produccion</a>
+			</div>
+			<div>
+				<a href="RegistrarpedidoDOMI.html"
+					class="w3-button w3-hover-lime w3-border-white w3-round-large w3-round-large"
+					style="text-decoration:none; background-color: black; color: white;margin-right: 0px ;margin-left: 0px;">&#127949; Domicilios</a>
+			</div>
+			<div>
+			<div>
+				<a href="MIPERFILEM.html"
+					class="w3-bar-item w3-button btn-lg w3-righ w3-hover-lime w3-border-white w3-round-large"
+					style="text-decoration:none; background-color: #8EBC5A;" target="_top">&#129333; Mi
+					Perfil</a>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

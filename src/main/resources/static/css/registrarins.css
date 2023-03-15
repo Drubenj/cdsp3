@@ -1,0 +1,33 @@
+body{
+    background:#E1FFFB;
+    color:#E1FFFB;
+    
+}
+
+header h1{
+    text-align: center;
+    color:#0D0E0E ;
+}
+
+
+div h1{
+    text-align: center;
+   
+}
+.formulario{
+    margin:10px 500px;
+    border-radius:30px;
+    padding:30px;
+    border: 30px;
+    height: 650px;
+    width: 600px;
+    margin-top: 200px;
+    text-align: justify;
+    color:#17202A ;
+   font-family: sans-serif;
+    background-color:#D8F3F0;
+    border-style: double;
+    border-color: #12E9CF;
+    line-height: 200%;
+
+}

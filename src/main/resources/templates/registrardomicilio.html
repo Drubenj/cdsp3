@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
+<title>Registro Domicilio</title>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+	<a class="navbar-brand" th:href="@{/insumo}">Domicilio</a>
+	<div class="collapse navbar-collapse" id="collapseNavbar">
+		<ul class="navbar-nav">
+		</ul>
+	</div>
+</nav>
+<br>
+<div class="container">
+	<div class="row">
+		<div
+			class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+			<h1 class="text-center">Registrar Domicilio</h1>
+			<div class="card-body">
+				
+    <form th:action="@{/domicilio}" th:object="${domicili}" method="POST">
+        <div class="grupo">
+             
+            <label >Ciudad:</label><br>
+            <select type="text" name="ciudad" id="ciudad" th:field="*{ciudad}" required> 
+            <option value=""></option>
+            <option value="bogota">Bogota</option>
+          	</select><br>
+            <label >Direccion:</label><br>
+            <input type="text" name="direccion" id="direccion" th:field="*{direccion}" required><br>	
+            <br>
+            <label >Barrio:</label><br>
+            <input type="text" name="barrio" id="barrio" th:field="*{barrio}" required><br>	
+            <br>
+            <label >Tipo de Inmueble:</label><br>
+            <input type="text" name="inmueble" id="inmueble" th:field="*{inmueble}" required><br>	
+            <br>
+            <label >bloque o interior:</label><br>
+            <input type="text" name="interior" id="interior" th:field="*{interior}" required><br>
+            <br>
+         
+
+						<button class="btn btn-success">Registrar</button>
+						<button class="btn btn-success">Limpiar</button>
+					</div>
+			</div>
+		</div>
+	</div>
+</div>
+</form>
+</head>
+<body>
+
+
+</body>
+</html>

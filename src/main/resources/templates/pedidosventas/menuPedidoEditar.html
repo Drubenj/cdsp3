@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>	Registrar pedidos</title>
+	
+	<link rel="icon"type="imagen/png" th:href="@{/img/pixlr-bg-result.png}"/>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
+	<link rel="stylesheet" type="text/css" th:href="@{css/encabezadoestilos.css}">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2021.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-2017.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Allerta+Stencil">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet'>
+
+		<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<!--css-->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/ventas.css}">
+	<!--FONT AWESOME-->
+	<script src="https://kit.fontawesome.com/816766908f.js" crossorigin="anonymous"></script>
+	<!--Archivo jscript-->
+
+</head>
+<body style="background: lightgoldenrodyellow; font-family:Rubik">
+	
+<div th:include="administrador/encabezado.html::header"></div>
+<div class="conteiner">
+			<div class="my-2 d-flex justify-content-end">
+				<h2 class="p-2">Menús</h2>
+			</div>
+			<div class="my-2 border-bottom d-flex justify-content-end ">
+				<h5 class="lea text-primary ">Listado de menús ofrecidos</h5>
+				<span class="p-2"> </span>
+			</div>
+
+		</div>
+<div class="container-fluid pedidoM">
+		
+
+	<div class="w3-threequarter w3-animate-zoom">
+		<div class="w3-row w3-container mt-5">
+			<div class="w3-quarter w3-row ">
+		
+				<a th:href="@{/cdsp/pedidos}"
+					class="w3-round w3-button w3-black w3-hover-black w3-hover-text-orange w3-wide text-right">Volver</a>
+				<a th:href="@{/cdsp/pedidos/verDetalle}"
+					class="w3-round w3-button w3-black w3-hover-black w3-hover-text-orange w3-wide "><b>Detalle</b></a>
+		
+			</div>
+		
+			<div class="w3-half row">
+				<form th:action="@{/cdsp/pedidos/buscar}" class="form-inline  position-relative d-inline-block" method="POST">
+					<input class="w3-input w3-animate-input w3-border w3-left" type="search" placeholder="Buscar Menu"
+						name="nombre" onkeyup="filtroMenu()">
+					<button class="btn position-absolute w3-hover-light-green w3-right" type="submit">
+						<i class="fa-solid fa-magnifying-glass"></i></button>
+				</form>
+			</div>
+		
+		</div>
+
+		<div class="w3-container w3-margin-top categoria">
+			<div class="w3-row">
+
+				<table class="w3-table-all w3-ul tabla" id="tablaMenu">
+					<tr class="w3-amber w3-bottombar w3-border-amber">
+						<th>ID Menú</th>
+						<th>Menú </th>
+						<th class="w3-center">Precio/u</th>
+						<th class="w3-center">Acción</th>
+					</tr>
+
+					<tr th:each="menu : ${listaMenu}">
+						<td th:text="${menu.id}"></td>
+						<td th:text="${menu.nombre}"></td>
+						<td th:text="${menu.precio}" class="w3-center"></td>
+						<td class="w3-center"><a th:href="@{/cdsp/pedidos/menu/editardetalle/{id} (id=${menu.id}) }" class="btn btn-outline-info btn-sm">ver</a></td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+<!--
+		<div id="Especiales" class="w3-container w3-margin-top categoria" style="display:none">
+			<div class="w3-row">
+
+				<table class="w3-table-all w3-ul tabla" id="tablaMenu">
+					<tr class="w3-amber w3-bottombar w3-border-amber">
+						<th>ID Menú</th>
+						<th>Menú </th>
+						<th class="w3-center">Precio/u</th>
+						<th class="w3-center">Agregar</th>
+					</tr>
+
+					<tr>
+						<td>101</td>
+						<td>Lazagna</td>
+						<td class="w3-center">15.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+					<tr>
+						<td>102</td>
+						<td>Solomito de cerdo</td>
+						<td class="w3-center">10.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+
+					<tr>
+						<td>103</td>
+						<td>Cocido Boyasense</td>
+						<td class="w3-center">10.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber ">+</button></td>
+					</tr>
+					<tr>
+						<td>104</td>
+						<td>Cazuela de mariscos</td>
+						<td class="w3-center">18.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+					<tr>
+						<td>105</td>
+						<td>Solomito</td>
+						<td class="w3-center">15.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+
+		<div id="Bebidas" class="w3-container w3-margin-top categoria" style="display:none">
+			<div class="w3-row ">
+
+				<table class="w3-table-all w3-ul tabla" id="tablaMenu">
+					<tr class="w3-amber w3-bottombar w3-border-amber">
+						<th>ID Menú</th>
+						<th>Menú</th>
+						<th class="w3-center">Precio/u</th>
+						<th class="w3-center">Agregar</th>
+					</tr>
+
+					<tr id="opciones">
+
+
+					</tr>
+					<tr>
+						<td>202</td>
+						<td>Pepsi 1.25 l</td>
+						<td class="w3-center">2.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+
+					<tr>
+						<td>203</td>
+						<td>Pony Malta</td>
+						<td class="w3-center">1.800</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber ">+</button></td>
+					</tr>
+					<tr>
+						<td>204</td>
+						<td>Colombiana 1.25 l</td>
+						<td class="w3-center">1.800</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+		<div id="Hamburguesas" class="w3-container w3-margin-top categoria" style="display:none">
+			<div class="w3-row ">
+
+				<table class="w3-table-all w3-ul tabla" id="tablaMenu">
+					<tr class="w3-amber w3-bottombar w3-border-amber">
+						<th>ID Menú</th>
+						<th>Menú</th>
+						<th class="w3-center">Precio/u</th>
+						<th class="w3-center">Agregar</th>
+					</tr>
+
+					<tr>
+						<td>M 300</td>
+						<td>Sencilla</td>
+						<td class="w3-center">5.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+					<tr>
+						<td>M 301</td>
+						<td>Jamón Serrano</td>
+						<td class="w3-center">6.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+
+					<tr>
+						<td>M 302</td>
+						<td> Ranchera</td>
+						<td class="w3-center">7.200</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber ">+</button></td>
+					</tr>
+					<tr>
+						<td>M 303</td>
+						<td>Shack burger de queso</td>
+						<td class="w3-center">7.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+					<tr>
+						<td>M 304</td>
+						<td>Patty bun</td>
+						<td class="w3-center">8.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+
+				</table>
+			</div>
+		</div>
+
+		<div id="Mazorcadas" class="w3-container w3-margin-top categoria" style="display:none">
+			<div class="w3-row ">
+
+				<table class="w3-table-all w3-ul tabla" id="tablaMenu">
+					<tr class="w3-amber w3-bottombar w3-border-amber">
+						<th>ID Menú</th>
+						<th>Menú</th>
+						<th class="w3-center">Precio/u</th>
+						<th class="w3-center">Agregar</th>
+					</tr>
+
+					<tr>
+						<td>M 500</td>
+						<td>Mazorcada</td>
+						<td class="w3-center">12.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+					<tr>
+						<td>M 501</td>
+						<td>Mazorcada sencilla</td>
+						<td class="w3-center">8.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+
+					<tr>
+						<td>M 502</td>
+						<td> Mazorcada especial</td>
+						<td class="w3-center">10.200</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber ">+</button></td>
+					</tr>
+					<tr>
+						<td>M 503</td>
+						<td>Mazorcada mexicana</td>
+						<td class="w3-center">12.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+					<tr>
+						<td>M 404</td>
+						<td>Mazorcada familiar</td>
+						<td class="w3-center">30.000</td>
+						<td class="w3-center"><button class="w3-button w3-circle w3-amber">+</button></td>
+					</tr>
+
+				</table>
+			</div>
+		</div>-->
+	</div>
+
+	<div class="w3-quarter">
+
+		<div class="w3-row categorias w3-center">
+			<h5 class=" w3-wide ">categoria</h5>
+			<div class="w3-bar-block w3 w3-center w3-margin-bottom" th:each="categoria : ${listaCateMenu}">
+					
+					<a  th:text="${categoria.nombre}" th:value="${categoria.id}" th:href="@{/cdsp/pedidos/buscar/categoria/{id} (id = ${categoria.id}) }" 
+						class="nav-item w3-bar-item w3-button w3-blue w3-round-large w3-margin-top">Especiales</a>
+						<!--<button class="nav-item w3-bar-item w3-button w3-blue w3-round-large w3-margin-top"
+							onclick="abrirCategoria('Bebidas')">Bebidas</a>
+							<button class="nav-item w3-bar-item w3-button w3-blue w3-round-large w3-margin-top"
+								onclick="abrirCategoria('Hamburguesas')">Hamburguesas</a>
+								<button class="nav-item w3-bar-item w3-button w3-blue w3-round-large w3-margin-top"
+									onclick="abrirCategoria('Mazorcadas')">Mazorcadas</a>-->
+								
+			</div>
+		</div>
+	</div>
+
+	<div class="w3-row" style="font-family:'Rubik'">
+		<!-- <div class=" registropedido ">
+			 Inicio de formulario 
+			<form action="@{/cdsp/pedidos/guardar}" class="formulario" id="formulario" method="POST">
+				<div class="w3-quarter mt-5">
+
+						<div class="card w3-light-grey mt-5" style="width:100%; border: none;">
+							<div class="formulario_grupo" id="grupo_cliente">
+								<div class="formulario_grupoi" id="grupo_cliente">
+									<label for="cliente" style="padding: 10px; position: relative;">Cliente</label>
+									<div class="w3-row">
+										<span style="padding: 10px;"><i class="fa-solid fa-user-plus w3-hover-text-blue">
+											</i></span><input class="input_formulario" name="cliente" id="cliente"
+											type="number" minlength="8" maxlength="10" required
+											style="background: none; width: 70%;padding-left:10px; border: none; outline: 0px"
+											placeholder="Selecciona un cliente">
+										<i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+									</div>
+								</div>
+								<p class="formulario_input-error">Debe introducir un número de identidicación valido</p>
+							</div>
+						</div>
+
+						<div class="card w3-light-grey mt-3" style="width:100%; border: none;">
+							<div class="formulario_grupo" id="grupo_mesa">
+								<div class="formulario_grupoi" id="grupo_mesa">
+									<label  style="padding: 10px; position: relative;">Tipo Pedido</label>
+									<select name="tipo" id="tipo" class="input_formulario w3-light-grey " required
+										style="background: none; width: 80%; padding-bottom: 15px;padding-left:10px; border: none; outline: 0px; color:darkgray;">
+										<th:block th:each="tipo : ${listaTipo}">
+										<option th:text="${tipo.nombre}" th:value="${tipo.id}"></option>
+										</th:block>
+									</select>
+									<i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+								</div>
+								<p class="formulario_input-error">La mesa debe estar contemplada en el rango de
+									disponibilidad</p>
+							</div>
+						</div>
+
+				</div>
+				<div class="w3-threequarter mt-5 w3-container">
+				
+				<div class="w3-card-4 mt-3">
+
+					<header class="w3-container w3-dark-grey">
+  						<h5 class="w3-right my-2">Detalle</h5>
+					</header>
+					<table class="table mt-2">
+						<thead >
+							<tr>
+								<th>ID</th>
+								<th>Menú</th>
+								<th class="w3-center">Cantidad</th>
+								<th>Total</th>
+							</tr>
+						</thead>
+						<tbody id="items">
+							<tr>
+								<th>id</th>
+								<td>Café</td>
+								<td class="w3-center">
+									<div class="formulario_grupo" id="grupo_cantidad">
+										<div class="formulario_grupoi" id="grupo_cantidad">
+											<input class="input_formulario" type="number"
+												style="width:20%; font-size: 18px" title="Ingrese la cantidad"
+												minlength="1" maxlength="3" min="1" max="500" required name="cantidad"
+												id="cantidad">
+											<i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
+										</div>
+										<p class="formulario_input-error">La cantidad debe ser suoperior a 0</p>
+									</div>
+									</tdclass="w3-center">
+
+								<td>$ <span>500</span></td>
+							</tr>
+						</tbody>
+						<tfoot>
+							<th scope="row">Total productos</th>
+							<td>10</td>
+							<td class="w3-center">
+								<button class="btn btn-danger btn-sm" id="vaciar-carrito">
+									vaciar
+								</button>
+							</td>
+							<td class="font-weight-bold">$ <span>5000</span></td>
+							<tr id="footer">
+								<th scope="row" colspan="5">Carrito vacío - comience a comprar!</th>
+							</tr>
+						</tfoot>
+					</table>
+					</div>
+					<div class="w3-bar w3-margin w3-center">
+						<button th:href="@{cdsp/pedidos/guardar}"class="w3-button w3-red" type="reset" value="Limpiar">Limpiar</button>
+						<button type="submit" class="w3-button  w3-orange btn-enviar ">Enviar</button>
+						<p class="formulario_mensaje-exito w3-margin-top" id="formulario_mensaje-exito">Formulario
+							registrado con exito</p>
+					</div>
+			</form>
+		</div>-->
+
+	</div>
+
+</div>
+
+<script th:src="@{/js/registrarpedido.js}"></script>
+</body>
+</html>

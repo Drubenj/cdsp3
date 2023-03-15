@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Prueba</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-3">
+  <h2>Registro de venta <span th:text="${id}"></span></h2>
+  <p>Hola <b><i><span th:text="${nombres} + ' ' + ${apellidos} + ' '"></span></i></b></p><p>tu venta ha sido registrada con exito</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>_________________ </th>
+        <th>_________________ </th>
+      </tr>
+      <tr>
+      	 <th></th>
+        <th> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+      <th>Registro No: </th>
+        <td th:text="${id}">Default</td>
+      <tr>
+       <th>Fecha: </th>
+        <td th:text="${fecha}">Default</td>
+      </tr>
+      <tr>
+       <th>Total: </th>
+        <td th:text="${total}">Default</td>
+      </tr>
+
+    </tbody>
+  </table>
+  <b></b>
+   <p><b><i>Gracias por preferirnos</i></b></p>
+</div>
+
+</body>
+</html>

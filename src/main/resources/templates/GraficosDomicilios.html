@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Grafico Domicilios</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.js"></script>
+        <link rel="icon"type="imagen/png"href="img/LOGO1.jpg"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+        <style>
+            .w3-sofia {
+              font-family: Rubik, cursive;
+            }
+            </style>
+    </head>
+    <body background="wall.jpg">
+         
+        <div class="w3-container w3-sofia w3-center" style="background-color: #E1FFFB(195, 241, 255); height: 1500px;width: 100%; display:block;padding: 0%;margin: 0%;" frameborder=0;>
+        <a style="font-size: 60px;text-align: center;">Grafico Domicilios</a></br>
+        <a style="font-size: 60px;text-align: center;">Porcentaje mensual</a>
+
+        <div style="margin: 480px;margin-top: 20px;background-color:red(176, 209, 209);">
+        <canvas id="myChart" width="50" height="50"></canvas>
+        </div>
+        </div> 
+
+    </body>
+    <script>
+        var ctx= document.getElementById("myChart").getContext("2d");
+        var myChart= new Chart(ctx,{
+            type:"pie",
+            data:{
+                labels:['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio'],
+                datasets:[{
+                        label:'Num datos',
+                        data:[15,11,15,18,19,12,10],
+                        backgroundColor:[
+                            '#66F6E3',
+                            '#66A8F6',
+                            '#FB3947',
+                            '#3ED359 ',
+                            'lightgreen',
+                            'yellow',
+                            '#05FCFC '
+                            
+                        ]
+                }]
+            },
+            options:{
+                scales:{
+                    yAxes:[{
+                            ticks:{
+                                beginAtZero:true
+                            }
+                    }]
+                }
+            }
+        });
+    </script>
+</html>
